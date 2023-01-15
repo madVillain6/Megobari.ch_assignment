@@ -11,9 +11,6 @@ const scrollSlider = (radio) => {
 };
 function dropDown() {
   window.onclick = function (e) {
-    function myFunction() {
-      document.getElementById("1").classList.toggle("show");
-    }
     if (!e.target.matches(".dropbtn")) {
       var myDropdown = document.getElementById("1");
       if (myDropdown.classList.contains("show")) {
@@ -21,4 +18,23 @@ function dropDown() {
       }
     }
   };
+}
+
+const headers = document.getElementsByClassName("accordion-header");
+const contents = document.getElementsByClassName("accordion-content");
+const icons = document.getElementsByClassName("icon");
+
+for (let i = 0; i < headers.length; i++) {
+  headers[i].addEventListener("click", () => {
+    for (let j = 0; j < contents.length; j++) {
+      if (i == j) {
+        icons[j].innerHTML =
+          contents[j].getBoundingClientRect().height === 0 ? "&and;" : "&or;";
+        contents[j].classList.toggle("content-transition");
+      } else {
+        icons[j].innerHTML = "&or;";
+        contents[j].classList.remove("content-transition");
+      }
+    }
+  });
 }
